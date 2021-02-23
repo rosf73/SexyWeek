@@ -1,8 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, ScrollView, ToastAndroid } from 'react-native';
 import { SimpleLineIcons as Icon } from '@expo/vector-icons';
 
+import Day from './Components/Day';
+
 export default function App() {
+  const [ detail , setDetail ] = useState([]);
+
   const daily_todo = "아침점심저녁 먹기";
   const daily_plans = [
     {
@@ -29,14 +33,36 @@ export default function App() {
         "엄인태33 세부일과 화이팅 ^^"
       ]
     },
+    {
+      daily: "엄인태4 하루계획 화이팅 ^^",
+      detail: [
+        "엄인태41 세부일과 화이팅 ^^",
+        "엄인태42 세부일과 화이팅 ^^",
+        "엄인태43 세부일과 화이팅 ^^"
+      ]
+    },
+    {
+      daily: "엄인태5 하루계획 화이팅 ^^",
+      detail: [
+        "엄인태51 세부일과 화이팅 ^^",
+        "엄인태52 세부일과 화이팅 ^^",
+        "엄인태53 세부일과 화이팅 ^^"
+      ]
+    }
   ];
 
   const renderDayElements = (plan_list) => {
     return plan_list.map(elem => {
+      const onPress = () => {
+        ToastAndroid.show(elem.daily, ToastAndroid.SHORT);
+        setDetail(elem.detail);
+      };
+
       return (
-        <View>
-          <Text>{elem.daily}</Text>
-        </View>
+        <Day
+          daily={elem.daily}
+          onPress={onPress}
+        />
       );
     });
   }
@@ -50,13 +76,13 @@ export default function App() {
     });
   }
 
-  const day_elements = renderDayElements(daily_plans);
-  const detail_elements = renderDetailElements(daily_plans[0].detail);
+  var day_elements = renderDayElements(daily_plans);
+  var detail_elements = renderDetailElements(detail);
 
   return (
     <View style={styles.container}>
       <View style={styles.daily}>
-        <Icon name="pencil" size={20} color="green"/>
+        <Icon name="pencil" size={20} color="#5A5"/>
         <Text style={styles.daily_text}>{daily_todo}</Text>
       </View>
       <View style={styles.week}>
@@ -89,34 +115,36 @@ const styles = StyleSheet.create({
   },
   daily: {
     flex: 0.6,
-    backgroundColor: 'orange',
     alignItems: 'center',
-    marginBottom: '2%',
     width: '100%',
     borderRadius: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#CCC',
     paddingHorizontal: '3%',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: '5%'
   },
   daily_text: {
     marginLeft: '2%'
   },
   week: {
     flex: 4,
-    marginBottom: '2%',
+    marginBottom: '5%',
     width: '100%'
   },
   week_scroll: {
-    flexGrow: 1,
-    alignItems: 'center',
-    flexDirection: 'row'
+    
   },
   detail: {
     flex: 8,
+    width: '95%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: '5%',
-    width: '95%'
+    backgroundColor: '#E8EBEF',
+    marginBottom: '15%'
   },
   detail_scroll: {
+    flexGrow: 1,
+    justifyContent: 'center'
   }
 });
