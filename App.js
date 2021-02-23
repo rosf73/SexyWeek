@@ -3,50 +3,53 @@ import { StyleSheet, Text, View, ScrollView, ToastAndroid } from 'react-native';
 import { SimpleLineIcons as Icon } from '@expo/vector-icons';
 
 import Day from './Components/Day';
+import ActionButtons from './Components/ActionButtons';
 
 export default function App() {
   const [ detail , setDetail ] = useState([]);
 
+  console.disableYellowBox = true;
+
   const daily_todo = "아침점심저녁 먹기";
   const daily_plans = [
     {
-      daily: "엄인태1 하루계획 화이팅 ^^",
+      daily: "엄준호1 하루계획 화이팅 ^^",
       detail: [
-        "엄인태11 세부일과 화이팅 ^^",
-        "엄인태12 세부일과 화이팅 ^^",
-        "엄인태13 세부일과 화이팅 ^^"
+        "엄준호11 세부일과 화이팅 ^^",
+        "엄준호12 세부일과 화이팅 ^^",
+        "엄준호13 세부일과 화이팅 ^^"
       ]
     },
     {
-      daily: "엄인태2 하루계획 화이팅 ^^",
+      daily: "엄준호2 하루계획 화이팅 ^^",
       detail: [
-        "엄인태21 세부일과 화이팅 ^^",
-        "엄인태22 세부일과 화이팅 ^^",
-        "엄인태23 세부일과 화이팅 ^^"
+        "엄준호21 세부일과 화이팅 ^^",
+        "엄준호22 세부일과 화이팅 ^^",
+        "엄준호23 세부일과 화이팅 ^^"
       ]
     },
     {
-      daily: "엄인태3 하루계획 화이팅 ^^",
+      daily: "엄준호3 하루계획 화이팅 ^^",
       detail: [
-        "엄인태31 세부일과 화이팅 ^^",
-        "엄인태32 세부일과 화이팅 ^^",
-        "엄인태33 세부일과 화이팅 ^^"
+        "엄준호31 세부일과 화이팅 ^^",
+        "엄준호32 세부일과 화이팅 ^^",
+        "엄준호33 세부일과 화이팅 ^^"
       ]
     },
     {
-      daily: "엄인태4 하루계획 화이팅 ^^",
+      daily: "엄준호4 하루계획 화이팅 ^^",
       detail: [
-        "엄인태41 세부일과 화이팅 ^^",
-        "엄인태42 세부일과 화이팅 ^^",
-        "엄인태43 세부일과 화이팅 ^^"
+        "엄준호41 세부일과 화이팅 ^^",
+        "엄준호42 세부일과 화이팅 ^^",
+        "엄준호43 세부일과 화이팅 ^^"
       ]
     },
     {
-      daily: "엄인태5 하루계획 화이팅 ^^",
+      daily: "엄준호5 하루계획 화이팅 ^^",
       detail: [
-        "엄인태51 세부일과 화이팅 ^^",
-        "엄인태52 세부일과 화이팅 ^^",
-        "엄인태53 세부일과 화이팅 ^^"
+        "엄준호51 세부일과 화이팅 ^^",
+        "엄준호52 세부일과 화이팅 ^^",
+        "엄준호53 세부일과 화이팅 ^^"
       ]
     }
   ];
@@ -81,6 +84,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <ActionButtons/>
+
       <View style={styles.daily}>
         <Icon name="pencil" size={20} color="#5A5"/>
         <Text style={styles.daily_text}>{daily_todo}</Text>
